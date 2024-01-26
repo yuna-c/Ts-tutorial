@@ -27,3 +27,13 @@ let student1 = {
     score: "F",
 };
 student1.score = "F";
+let student1 = {
+    name: "David",
+    age: 30,
+    isFemale: false,
+};
+let student1 = {
+    name: "David",
+    age: 30,
+    isFemale: false,
+};

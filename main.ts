@@ -98,3 +98,39 @@ let student1: Student = {
 };
 
 student1.score = "F";
+
+//interface는 객체의 property 확장에 따른 구조변경이 편함(추가할때)
+interface Student {
+  name: string;
+  age: number;
+}
+
+interface Student {
+  name: string;
+  age: number;
+  isFemale: boolean;
+}
+
+let student1: Student = {
+  name: "David",
+  age: 30,
+  isFemale: false,
+};
+
+// type
+type Student = {
+  name: string;
+  age: number;
+};
+
+type Student = {
+  name: string;
+  age: number;
+  isFemale: boolean;
+};
+
+let student1: Student = {
+  name: "David",
+  age: 30,
+  isFemale: false,
+};
