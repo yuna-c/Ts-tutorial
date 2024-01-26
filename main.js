@@ -20,20 +20,10 @@ const plus = (n1, n2) => {
 };
 plus(1, 2, 3, 5);
 let student1 = {
-    name: "David",
-    age: 20,
-    isFemale: false,
-    // address: "seoul",
-    score: "F",
-};
-student1.score = "F";
-let student1 = {
-    name: "David",
+    name: "Emily",
     age: 30,
-    isFemale: false,
+    isFemale: true,
 };
-let student1 = {
-    name: "David",
-    age: 30,
-    isFemale: false,
+const test = (info) => {
+    console.log(info);
 };

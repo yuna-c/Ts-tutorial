@@ -68,7 +68,7 @@ plus(1, 2, 3, 5);
 //type vs interface차이점
 //interface는 객체에만 적용가능
 //type은 자료형 상관없이 모두 적용가능
-type Grade = "A" | "B" | "C" | "D" | "F";
+// type Grade = "A" | "B" | "C" | "D" | "F";
 
 /*
 interface Student {
@@ -82,55 +82,86 @@ interface Student {
 
 // 인터페이스 객체를 타입 형식으로 만든 것
 //Interface 대신 type으로도 객체타입 선언가능
-type Student = {
-  name: string;
-  age: number;
-  readonly isFemale: boolean; //특정 property를 수정불가하게 읽기 전용으로 지정
-  // address?: string; //해당 property를 선택사항으로 지정
-  score: Grade;
-};
-let student1: Student = {
-  name: "David",
-  age: 20,
-  isFemale: false,
-  // address: "seoul",
-  score: "F",
-};
 
-student1.score = "F";
+// type Student = {
+//   name: string;
+//   age: number;
+//   readonly isFemale: boolean; //특정 property를 수정불가하게 읽기 전용으로 지정
+//   // address?: string; //해당 property를 선택사항으로 지정
+//   score: Grade;
+// };
+// let student1: Student = {
+//   name: "David",
+//   age: 20,
+//   isFemale: false,
+//   // address: "seoul",
+//   score: "F",
+// };
+
+// student1.score = "F";
 
 //interface는 객체의 property 확장에 따른 구조변경이 편함(추가할때)
-interface Student {
-  name: string;
-  age: number;
-}
+// interface Student {
+//   name: string;
+//   age: number;
+// }
 
-interface Student {
-  name: string;
-  age: number;
-  isFemale: boolean;
-}
+// interface Student {
+//   name: string;
+//   age: number;
+//   isFemale: boolean;
+// }
 
-let student1: Student = {
-  name: "David",
-  age: 30,
-  isFemale: false,
-};
+// let student1: Student = {
+//   name: "David",
+//   age: 30,
+//   isFemale: false,
+// };
 
 // type
-type Student = {
-  name: string;
-  age: number;
-};
+// type Student = {
+//   name: string;
+//   age: number;
+// };
 
-type Student = {
+// type Student = {
+//   name: string;
+//   age: number;
+//   isFemale: boolean;
+// };
+
+// let student1: Student = {
+//   name: "David",
+//   age: 30,
+//   isFemale: false,
+// };
+
+//type 주로 쓰는 경우
+//1. 기존 객체타입의 property의 추가가 아닌, 서로 다른 객체를 합쳐서 새로운 타입을 만들때
+//2. 객체가 아닌 일반 자료형인데
+
+interface StudentA {
   name: string;
   age: number;
+}
+
+interface StudentB {
+  name: string;
   isFemale: boolean;
+}
+
+//type이용해서 두개의 인터페이스에서 Intersection으로 &&로 합쳐서 새로타입지정
+type StudentTotal = StudentA & StudentB;
+
+let student1: StudentTotal = {
+  name: "Emily",
+  age: 30,
+  isFemale: true,
 };
 
-let student1: Student = {
-  name: "David",
-  age: 30,
-  isFemale: false,
+//객체는 아니지만 특정 커스터마이징된 타입을 재활용해야 될떄 type으로 지정
+type commonType = string | null;
+
+const test = (info: commonType) => {
+  console.log(info);
 };
