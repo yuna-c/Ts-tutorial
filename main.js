@@ -29,15 +29,8 @@ console.log(student2);
 student2.isFemale = true;
 console.log(student2);
 const plus = (n1, n2) => {
-    return n1 + n2;
+    // return n1 + n2;
+    console.log(n1);
+    console.log(n2);
 };
-const minus = (n1, n2) => {
-    return n1 - n2;
-};
-const multiply = (n1, n2) => {
-    console.log(n1 * n2);
-};
-const divider = (n1, n2) => {
-    return n1 / n2;
-};
-plus(2, 3);
+plus(1, 2, 3, 5);
