@@ -17,29 +17,30 @@ let random: Array<number | string> = [4, "5", "3", 7];
 
 //Interface : 객체같이 복잡한 구조의 타입을 지정을 할때
 //특정 경우에 대한 커스텀타입을 제작해서 재활용
-interface Student {
-  name: string;
-  age: number;
-  readonly isFemale: boolean; //특정 property를 수정불가하게 읽기 전용으로 지정
-  address?: string; //해당 property를 선택사항으로 지정
-}
-let student1: Student = {
-  name: "David",
-  age: 20,
-  isFemale: false,
-  address: "seoul",
-};
 
-let student2: Student = {
-  name: "Emily",
-  age: 30,
-  isFemale: true,
-};
+// interface Student {
+//   name: string;
+//   age: number;
+//   readonly isFemale: boolean; //특정 property를 수정불가하게 읽기 전용으로 지정
+//   address?: string; //해당 property를 선택사항으로 지정
+// }
+// let student1: Student = {
+//   name: "David",
+//   age: 20,
+//   isFemale: false,
+//   address: "seoul",
+// };
 
-student2.isFemale = false;
-console.log(student2);
-student2.isFemale = true;
-console.log(student2);
+// let student2: Student = {
+//   name: "Emily",
+//   age: 30,
+//   isFemale: true,
+// };
+
+// student2.isFemale = false;
+// console.log(student2);
+// student2.isFemale = true;
+// console.log(student2);
 
 //리턴값이 있는 함수면 파라미터뒤에 리턴값의 타입지정가능
 //리턴값이 없으면 리턴값의 타입을 void지정
@@ -61,3 +62,39 @@ const plus: Calc = (n1, n2) => {
 };
 
 plus(1, 2, 3, 5);
+
+// 메모리 할당
+//type 특정 커스터마이징된 자료형을 새로 선언할때
+//type vs interface차이점
+//interface는 객체에만 적용가능
+//type은 자료형 상관없이 모두 적용가능
+type Grade = "A" | "B" | "C" | "D" | "F";
+
+/*
+interface Student {
+  name: string;
+  age: number;
+  readonly isFemale: boolean; //특정 property를 수정불가하게 읽기 전용으로 지정
+  // address?: string; //해당 property를 선택사항으로 지정
+  score: Grade;
+}
+*/
+
+// 인터페이스 객체를 타입 형식으로 만든 것
+//Interface 대신 type으로도 객체타입 선언가능
+type Student = {
+  name: string;
+  age: number;
+  readonly isFemale: boolean; //특정 property를 수정불가하게 읽기 전용으로 지정
+  // address?: string; //해당 property를 선택사항으로 지정
+  score: Grade;
+};
+let student1: Student = {
+  name: "David",
+  age: 20,
+  isFemale: false,
+  // address: "seoul",
+  score: "F",
+};
+
+student1.score = "F";

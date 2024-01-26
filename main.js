@@ -13,24 +13,17 @@ let combined = [3, "homework", false];
 //유니온타입으로 들어갈수 있는 자료형을 복수개 지정
 // 이것도 들어가고 저것도 들어가고
 let random = [4, "5", "3", 7];
-let student1 = {
-    name: "David",
-    age: 20,
-    isFemale: false,
-    address: "seoul",
-};
-let student2 = {
-    name: "Emily",
-    age: 30,
-    isFemale: true,
-};
-student2.isFemale = false;
-console.log(student2);
-student2.isFemale = true;
-console.log(student2);
 const plus = (n1, n2) => {
     // return n1 + n2;
     console.log(n1);
     console.log(n2);
 };
 plus(1, 2, 3, 5);
+let student1 = {
+    name: "David",
+    age: 20,
+    isFemale: false,
+    // address: "seoul",
+    score: "F",
+};
+student1.score = "F";
