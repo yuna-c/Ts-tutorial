@@ -200,42 +200,42 @@ interface Student {
 
 //아래같은 경우는 배열의 들어가는 자료값이 일정하지 않으므로 똑같은 구조임에도불구하고
 //타입에 따른 함수를 여러개 복사해야 되는 번거로움
-const getLength = (arr: number[]) => {
-  return arr.length;
-};
+// const getLength = (arr: number[]) => {
+//   return arr.length;
+// };
 
-const getLength2 = (arr: string[]) => {
-  return arr.length;
-};
+// const getLength2 = (arr: string[]) => {
+//   return arr.length;
+// };
 
-//any타입으로 지정함으로서 위의 문제점 해결
-const getAnyLength = (arr: any[]) => {
-  return arr.length;
-};
+// //any타입으로 지정함으로서 위의 문제점 해결
+// const getAnyLength = (arr: any[]) => {
+//   return arr.length;
+// };
 
-//any타입을 지정하면 정상적이지 못한 값이 들어와도 컴파일시 에러잡지 못함
-const numbers = [1, 2, 3, 4, 5];
-const letters = ["a", "b", "c"];
-const weired = [false, 3, "3"];
-getAnyLength(numbers);
-getAnyLength(letters);
-getAnyLength(weired);
+// //any타입을 지정하면 정상적이지 못한 값이 들어와도 컴파일시 에러잡지 못함
+// const numbers = [1, 2, 3, 4, 5];
+// const letters = ["a", "b", "c"];
+// const weired = [false, 3, "3"];
+// getAnyLength(numbers);
+// getAnyLength(letters);
+// getAnyLength(weired);
 
-//generic으로 호출시 상세타입을 파라미터로 전달
-const getGenericLength = <t>(arr: t[]) => {
-  return arr.length;
-};
+// //generic으로 호출시 상세타입을 파라미터로 전달
+// const getGenericLength = <t>(arr: t[]) => {
+//   return arr.length;
+// };
 
-//함수호출시 미리 지정한 경로 타입을 전달하는 구조
-getGenericLength<string>(["a", "b"]);
-getGenericLength<number>([1, 2]);
-getGenericLength<number | string>([1, "2"]);
+// //함수호출시 미리 지정한 경로 타입을 전달하는 구조
+// getGenericLength<string>(["a", "b"]);
+// getGenericLength<number>([1, 2]);
+// getGenericLength<number | string>([1, "2"]);
 
-test(1, 2, 3, 4);
-function test(...arr) {
-  //전개연산자로 값을 꺼내오는것 이게 복사
-  console.log([...arr]);
-}
+// test(1, 2, 3, 4);
+// function test(...arr) {
+//   //전개연산자로 값을 꺼내오는것 이게 복사
+//   console.log([...arr]);
+// }
 
 //객체로 구성된 배열의 타입
 
