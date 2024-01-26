@@ -33,3 +33,6 @@ let student2: Student = {
   age: 30,
   isFemale: true,
 };
+
+// student2.isFemale = false;
+// console.log(student2);
