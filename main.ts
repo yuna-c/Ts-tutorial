@@ -49,19 +49,19 @@ let random: Array<number | string> = [4, "5", "3", 7];
 
 //다른 로직의 함수라고 하더라도 전달되는 인수와 리턴값이 매번 같은 패턴이면 일일이 함수마다 타입지정이 번거로움
 //함수로 인터페이스로 특정함수의 타입을 지정해서 재활용가능
-interface Calc {
-  // (...n: Array<string | number>): number | void;
-  // 파라미터로 전달되는 인수의 갯수를 특정할 수 없을 때 rest 파라미터 지정하고 배열ㄷ타입 설정
-  (...n: number[]): number | void;
-}
+// interface Calc {
+//   // (...n: Array<string | number>): number | void;
+//   // 파라미터로 전달되는 인수의 갯수를 특정할 수 없을 때 rest 파라미터 지정하고 배열ㄷ타입 설정
+//   (...n: number[]): number | void;
+// }
 
-const plus: Calc = (n1, n2) => {
-  // return n1 + n2;
-  console.log(n1);
-  console.log(n2);
-};
+// const plus: Calc = (n1, n2) => {
+//   // return n1 + n2;
+//   console.log(n1);
+//   console.log(n2);
+// };
 
-plus(1, 2, 3, 5);
+// plus(1, 2, 3, 5);
 
 // 메모리 할당
 //type 특정 커스터마이징된 자료형을 새로 선언할때
@@ -193,6 +193,7 @@ interface Student {
 // // ??연산자는 무조건 undefined, null같이 실제적으로 에러가 발생할만한 상황에서만 예외처리
 // introduce("my Baby", 0);
 
+/* */
 //Generic
 //공통된 규칙인데 호출할때 들어갈 자료형을 매번 산정하기 어려울때
 //일일이 타입을 따로 지정하는것이 비효율적이므로 타입지정을 호출할떄 지정하는 틀
@@ -229,3 +230,37 @@ const getGenericLength = <t>(arr: t[]) => {
 getGenericLength<string>(["a", "b"]);
 getGenericLength<number>([1, 2]);
 getGenericLength<number | string>([1, "2"]);
+
+test(1, 2, 3, 4);
+function test(...arr) {
+  //전개연산자로 값을 꺼내오는것 이게 복사
+  console.log([...arr]);
+}
+
+//객체로 구성된 배열의 타입
+
+//개별객체의 타입인 interface지정
+interface Student {
+  name: string;
+  age: number;
+  isFemale: boolean;
+  address?: string;
+}
+
+//각각의 Interface로 구성된 타입을 지정 (실무에서 가장 많이 쓰이는 패턴 DB나 API에서 데이터 가져올떄)
+const classInfo: Student[] = [
+  { name: "David", age: 20, isFemale: false, address: "Seoul" },
+  { name: "Michael", age: 30, isFemale: false },
+  { name: "Jula", age: 32, isFemale: true },
+];
+
+//단순 문자타입으로 구성된 배열
+const names: string[] = ["red", "green", "blue"];
+
+const getArrayInfo = <t>(arr: t[]) => {
+  console.log(arr);
+};
+
+//제네릭으로 인터페이스도 타입으로 전달해서 호출 가능 (해당 패턴을 제일 많이 사용)
+getArrayInfo<Student>(classInfo);
+getArrayInfo<string>(names);
