@@ -1,7 +1,7 @@
 //해당 로직에서 중요하게 다룰 Post데이터 객체의 타입을 미리 interface로 선언
 interface Task {
   id: number;
-  title: string | undefined; //title에 담기는 값 자체가 DOM을 통해서 가져오는 문자열이기 때문에 undefined로 union타입 지정
+  title: string | Node; //해당 값은 추후 JS에서 prepend메서드의 인수로 전달될 값인데 해당메서드가 string, node만 전달되도로 강제
   createAt: Date;
   complete: boolean;
 }
@@ -25,7 +25,7 @@ form?.addEventListener("submit", (e) => {
 
   const newTask = {
     id: performance.now(),
-    title: input?.value,
+    title: input?.value || "",
     createAt: new Date(),
     complete: false,
   };
@@ -39,7 +39,7 @@ form?.addEventListener("submit", (e) => {
   input && (input.value = "");
 });
 
-function addListItem(task) {
+function addListItem(task: Task) {
   const item = document.createElement("li");
   const checkbox = document.createElement("input");
   checkbox.type = "checkbox";
@@ -52,7 +52,7 @@ function addListItem(task) {
     item.append(button);
   } else {
     item.style.textDecoration = "none";
-    checkbox.checkded = false;
+    checkbox.checked = false;
   }
 
   checkbox.addEventListener("change", () => {
@@ -67,17 +67,22 @@ function addListItem(task) {
         const del_id = task.id;
         tasks = tasks.filter((el) => el.id !== del_id);
         saveTasks();
-        e.currentTarget.parentElement.remove();
+        //타입스크립트에서는 event객체안쪽의 property를 읽지 못하는 버그
+        //해결방법: 해당 이벤트 객체를 변수로 옮겨담고 직접 타입 지정
+        const eventTarget = e.currentTarget as HTMLButtonElement;
+        eventTarget.parentElement?.remove();
       });
     } else {
       item.style.textDecoration = "none";
-      item.querySelector("button").remove();
+      item.querySelector("button")?.remove();
     }
     saveTasks();
   });
 
-  item.prepend(checkbox, task.title);
-  list.append(item);
+  const newText: string | Node = task.title;
+
+  item.prepend(checkbox, newText);
+  list?.append(item);
 }
 
 function saveTasks() {
